@@ -6,7 +6,7 @@
 /*   By: dpetrukh <dpetrukh@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 11:53:10 by dpetrukh          #+#    #+#             */
-/*   Updated: 2025/01/12 14:26:47 by dpetrukh         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:20:00 by dpetrukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,28 @@
 
 Account::Account( int initial_deposit )
 {
-	std::cout << "amount" << initial_deposit;
 	_accountIndex = _nbAccounts;
 	_nbAccounts += 1;
 	_totalAmount += _totalAmount;
-	_amount += initial_deposit;
+	_amount = initial_deposit;
+	_displayTimestamp();
+	std::cout
+	<< " index:"
+	<< _accountIndex
+	<< ";amount:"
+	<< initial_deposit
+	<< ";created";
 }
 
 Account::~Account( void )
 {
-	std::cout << "closed";
+	_displayTimestamp();
+	std::cout
+	<< " index:"
+	<< _accountIndex
+	<< ";amount:"
+	<< _amount
+	<< ";created";
 }
 
 int	Account::getNbAccounts( void )
@@ -45,9 +57,14 @@ int	Account::getNbDeposits( void )
 	return ( _totalNbDeposits);
 }
 
+int Account::getNbWithdrawals ( void )
+{
+	return (_totalNbWithdrawals);
+}
+
 void	Account::_displayTimestamp( void )
 {
-	std::time_t now = std::time(nullptr);
+	std::time_t now = std::time(NULL);
 	std::tm* timestamp = std::localtime(&now);
 
 	std::cout
@@ -60,5 +77,19 @@ void	Account::_displayTimestamp( void )
 	<< (timestamp->tm_min < 10 ? "0" : "") << (timestamp->tm_min)
 	<< (timestamp->tm_sec < 10 ? "0" : "") << (timestamp->tm_sec)
 	<< "]";
+}
+
+void	Account::displayAccountsInfos()
+{
+	_displayTimestamp();
+	std::cout
+	<< " accounts:"
+	<< _nbAccounts
+	<< ";total:"
+	<< _totalAmount
+	<< ";deposits:"
+	<< _totalNbDeposits
+	<< ";withdrawals:"
+	<< _totalNbWithdrawals;
 }
 
