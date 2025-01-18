@@ -6,7 +6,7 @@
 /*   By: dpetrukh <dpetrukh@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:09:17 by dpetrukh          #+#    #+#             */
-/*   Updated: 2025/01/11 19:19:35 by dpetrukh         ###   ########.fr       */
+/*   Updated: 2025/01/18 22:24:22 by dpetrukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	PhoneBook::add()
 		currentCount++;
 	}
 	else
-		contact[currentCount].setContact(first, last, nickname, phone, secret);
+		contact[currentCount - 1].setContact(first, last, nickname, phone, secret);
 	std::cout << "Contact added successfully!\n";
 }
 
@@ -87,6 +87,14 @@ void	printContactList(Contact contact[8], int current_count)
 	int	i;
 
 	i = 0;
+	printRightAlignedColumn("INDEX");
+	std::cout << "|";
+	printRightAlignedColumn("FIRST");
+	std::cout << "|";
+	printRightAlignedColumn("LAST");
+	std::cout << "|";
+	printRightAlignedColumn("NICK");
+	std::cout << '\n';
 	while (i < current_count)
 	{
 		printRightAlignedColumn(std::string(1, i + 1 + '0'));
